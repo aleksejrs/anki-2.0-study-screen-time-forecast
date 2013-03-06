@@ -1,9 +1,10 @@
 #!/usr/bin/python -tt
 # -*- coding: utf-8 -*-
-# Copyright: Aleksej
+# Copyright: Aleksej, 2013
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
-#pp(dir(mw.col.decks))
+# XXX: although I am trusting this script not to damage my collection, a bug
+# in interaction with option groups may be able to do it.
 
 from aqt import mw
 from anki.hooks import wrap
