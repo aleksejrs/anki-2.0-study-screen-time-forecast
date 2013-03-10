@@ -31,20 +31,36 @@ def grease(mw):
 
     decks = mw.col.decks
     curDeck = decks.selected()
+
+    if not 'conf' in decks.get(curDeck):
+        # A filtered deck.
+        return ''
+
     conf = decks.confForDid(curDeck)
 
     avgEase = getEase(mw)
 
-    if avgEase:
-        # Current Starting Ease of the options group.
-        groupsval = conf['new']['initialFactor'] / 10
-        # Anki's default ease.
-        ordinaryEase = 250
+    def thisDeckEase(self, did):
+            return self.col.db.scalar("""
+            select
+            avg(factor) / 10.0
+            from cards where did = %s and queue = 2""" % did)
 
+
+    def dangerouslyOff(avg, ordinary, conf):
+
+        maxOKSEase = max(avg, ordinary)
+        minOKSEase = min(avg, ordinary)
+        return conf < minOKSEase or conf > maxOKSEase
+
+    # Anki's default ease.
+    ordinaryEase = 250
+    # Current Starting Ease of the options group.
+    groupsval = conf['new']['initialFactor'] / 10
+
+    if avgEase:
         # The starting ease MUST be between the average ease and the default.
-        maxOKSEase = max(avgEase, ordinaryEase)
-        minOKSEase = min(avgEase, ordinaryEase)
-        dangerouslyOff = groupsval < minOKSEase or groupsval > maxOKSEase
+        confDangerouslyOff = dangerouslyOff(avgEase, ordinaryEase, groupsval)
 
         # Do not let an extreme average ease make the starting ease extreme:
         # new cards are new, and might be very different.  Also, the average
@@ -55,7 +71,7 @@ def grease(mw):
         avgEase = int(avgEase)
 
 
-        if (dangerouslyOff or
+        if (confDangerouslyOff or
                 abs(groupsval - targetEase) > 2 or
                 abs(groupsval - avgEase) > 10):
             
@@ -72,7 +88,7 @@ def grease(mw):
             suggStr = 'sugg: {0}'.format(targetEase)
             retval = "Ease: {0}{1}{2}".format(avgStr, confStr, suggStr)
 
-            if dangerouslyOff:
+            if confDangerouslyOff:
                 retval = "<b>{0}</b>".format(retval)
                 
         else:
@@ -80,10 +96,22 @@ def grease(mw):
     else:
         retval = ''
 
+    thisEase = thisDeckEase(mw, curDeck)
+    if thisEase:
+        thisDangerouslyOff = dangerouslyOff(thisEase, ordinaryEase, groupsval)
+
+        thisVsAvg = abs(avgEase - thisEase)
+        if thisVsAvg > 10:
+            thisRetVal = "This deck: {0}, avg: {1}".format(int(thisEase), avgEase)
+
+            if thisDangerouslyOff:
+                thisRetVal = "<b>{0}</b>".format(thisRetVal)
+
+            retval += '<br>' + thisRetVal
 
     return retval
 
-  
+
 def myTable(self, _old):
 
     oldRes = _old(self)
@@ -93,8 +121,6 @@ def myTable(self, _old):
         return oldRes
     else:
         return u"{0}<br/>{1}".format(oldRes, gr)
-
-
 
 
 Overview._table = wrap(Overview._table, myTable, "around")
