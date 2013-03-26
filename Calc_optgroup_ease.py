@@ -85,7 +85,7 @@ def grease(mw):
                 confStr = 'conf: {0}, '.format(groupsval)
 
             suggStr = 'sugg: {0}'.format(targetEase)
-            retval = "Ease: {0}{1}{2}".format(avgStr, confStr, suggStr)
+            retval = "Group's ease: {0}{1}{2}".format(avgStr, confStr, suggStr)
 
             if confDangerouslyOff:
                 retval = "<b>{0}</b>".format(retval)
@@ -95,13 +95,14 @@ def grease(mw):
     else:
         retval = ''
 
+    # Is the deck's avg ease too different from the option group's startease?
     thisEase = thisDeckEase(mw, curDeck)
     if thisEase:
         thisDangerouslyOff = dangerouslyOff(thisEase, ordinaryEase, groupsval)
 
         thisVsAvg = abs(avgEase - thisEase)
         if thisVsAvg > 10:
-            thisRetVal = "This deck: {0}, avg: {1}".format(int(thisEase), avgEase)
+            thisRetVal = "This deck's avg ease: {0}, group's starting ease: {1}".format(int(thisEase), avgEase)
 
             if thisDangerouslyOff:
                 thisRetVal = "<b>{0}</b>".format(thisRetVal)
