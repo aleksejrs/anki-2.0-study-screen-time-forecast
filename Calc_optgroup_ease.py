@@ -47,7 +47,7 @@ def grease(mw):
 
 
     def dangerouslyOff(avg, ordinary, conf):
-
+        # Is conf not between avg and ordinary (inclusive)?
         maxOKSEase = max(avg, ordinary)
         minOKSEase = min(avg, ordinary)
         return conf < minOKSEase or conf > maxOKSEase
@@ -96,6 +96,7 @@ def grease(mw):
         retval = ''
 
     # Is the deck's avg ease too different from the option group's startease?
+    # FIXME: this seems to confuse groupsval and avgEase!
     thisEase = thisDeckEase(mw, curDeck)
     if thisEase:
         thisDangerouslyOff = dangerouslyOff(thisEase, ordinaryEase, groupsval)
