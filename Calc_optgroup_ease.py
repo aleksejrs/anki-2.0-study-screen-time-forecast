@@ -102,7 +102,7 @@ def grease(mw):
 
         thisVsAvg = abs(avgEase - thisEase)
         if thisVsAvg > 10:
-            thisRetVal = "This deck's avg ease: {0}, group's starting ease: {1}".format(int(thisEase), avgEase)
+            thisRetVal = "Deck's avg ease: {0}, group's: {1}".format(int(thisEase), avgEase)
 
             if thisDangerouslyOff:
                 thisRetVal = "<b>{0}</b>".format(thisRetVal)
