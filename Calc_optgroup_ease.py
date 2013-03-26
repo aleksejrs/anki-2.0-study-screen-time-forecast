@@ -6,7 +6,6 @@
 # XXX: although I am trusting this script not to damage my collection, a bug
 # in interaction with option groups may be able to do it.
 
-from aqt import mw
 from anki.hooks import wrap
 from aqt.overview import Overview
 
