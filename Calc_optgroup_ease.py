@@ -6,7 +6,7 @@
 from anki.hooks import wrap
 from aqt.overview import Overview
 
-def getEase(mw):
+def getThisGroupsEase(mw):
     """Get the average ease for the decks in this options group."""
     def _factor(self, idstr):
             return self.col.db.scalar("""
@@ -22,7 +22,7 @@ def getEase(mw):
     return _factor(mw, ids2str(dids))
 
 
-def grease(mw):
+def makeEaseWarnerStrings(mw):
     """Present average ease and advice on Starting Ease configuration."""
 
     decks = mw.col.decks
@@ -34,16 +34,16 @@ def grease(mw):
 
     conf = decks.confForDid(curDeck)
 
-    avgEase = getEase(mw)
+    avgGrEase = getThisGroupsEase(mw)
 
-    def thisDeckEase(self, did):
+    def getThisDeckEase(self, did):
             return self.col.db.scalar("""
             select
             avg(factor) / 10.0
             from cards where did = %s and queue = 2""" % did)
 
 
-    def dangerouslyOff(avg, ordinary, conf):
+    def isDangerouslyOff(avg, ordinary, conf):
         # Is conf not between avg and ordinary (inclusive)?
         maxOKSEase = max(avg, ordinary)
         minOKSEase = min(avg, ordinary)
@@ -52,34 +52,35 @@ def grease(mw):
     # Anki's default ease.
     ordinaryEase = 250
     # Current Starting Ease of the options group.
-    groupsval = conf['new']['initialFactor'] / 10
+    grStartEase = conf['new']['initialFactor'] / 10
 
-    if avgEase:
+    if avgGrEase:
         # The starting ease MUST be between the average ease and the default.
-        confDangerouslyOff = dangerouslyOff(avgEase, ordinaryEase, groupsval)
+        confDangerouslyOff = isDangerouslyOff(
+                avgGrEase, ordinaryEase, grStartEase)
 
         # Do not let an extreme average ease make the starting ease extreme:
         # new cards are new, and might be very different.  Also, the average
         # ease might be based on cards which haven't had a chance to present
         # their actual eases yet.
-        targetEase = (avgEase + ordinaryEase) / 2
+        targetEase = (avgGrEase + ordinaryEase) / 2
         targetEase = int(targetEase)
-        avgEase = int(avgEase)
+        avgGrEase = int(avgGrEase)
 
 
         if (confDangerouslyOff or
-                abs(groupsval - targetEase) > 2 or
-                abs(groupsval - avgEase) > 10):
+                abs(grStartEase - targetEase) > 2 or
+                abs(grStartEase - avgGrEase) > 10):
             
-            if avgEase == groupsval:
+            if avgGrEase == grStartEase:
                 avgStr = 'avg='
             else:
-                avgStr = 'avg: {0}, '.format(avgEase)
+                avgStr = 'avg: {0}, '.format(avgGrEase)
 
-            if groupsval == targetEase:
+            if grStartEase == targetEase:
                 confStr = 'conf='
             else:
-                confStr = 'conf: {0}, '.format(groupsval)
+                confStr = 'conf: {0}, '.format(grStartEase)
 
             suggStr = 'sugg: {0}'.format(targetEase)
             retval = "Group's ease: {0}{1}{2}".format(avgStr, confStr, suggStr)
@@ -92,17 +93,19 @@ def grease(mw):
     else:
         retval = ''
 
-    # Is the deck's avg ease too different from the option group's startease?
-    # FIXME: this seems to confuse groupsval and avgEase!
-    thisEase = thisDeckEase(mw, curDeck)
-    if thisEase:
-        thisDangerouslyOff = dangerouslyOff(thisEase, ordinaryEase, groupsval)
 
-        thisVsAvg = abs(avgEase - thisEase)
+    thisDeckEase = getThisDeckEase(mw, curDeck)
+    if thisDeckEase:
+
+        thisVsAvg = abs(avgGrEase - thisDeckEase)
         if thisVsAvg > 10:
-            thisRetVal = "Deck's avg ease: {0}, group's: {1}".format(int(thisEase), avgEase)
+            thisRetVal = "Deck's avg ease: {0}, group's: {1}".format(
+                    int(thisDeckEase), avgGrEase)
 
-            if thisDangerouslyOff:
+            # Is the deck's average ease too different from the option group's
+            # Starting Ease (which is supposed to be based on the suggestion
+            # of the above code)?  Then it may need a different options group.
+            if isDangerouslyOff(thisDeckEase, ordinaryEase, grStartEase):
                 thisRetVal = "<b>{0}</b>".format(thisRetVal)
 
             retval += '<br>' + thisRetVal
@@ -114,7 +117,7 @@ def myTable(self, _old):
 
     oldRes = _old(self)
 
-    gr = grease(self.mw)
+    gr = makeEaseWarnerStrings(self.mw)
     if gr == '':
         return oldRes
     else:
