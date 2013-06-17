@@ -44,7 +44,7 @@ def makeForecastStrings(mw):
         totalText = u"Next {0}Y: {1}".format(years, fmtTimeSpan(total, short=True))
 
     per_day = total / forecast_days
-    if per_day > 0:
+    if per_day >= 5:
         per_day_text = u" ({0}/day)".format(fmtTimeSpan(per_day, short=True))
     else:
         per_day_text = ''
