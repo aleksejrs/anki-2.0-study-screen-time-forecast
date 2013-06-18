@@ -10,7 +10,8 @@ from Card_time_forecast import getForecast
 from anki.utils import fmtTimeSpan
 import random
 
-# If the deck contains more cards, take a random sample of this many.
+# If the deck contains more cards, take a random sample of this many,
+# and multiply the result for an approximation.
 MAX_CARDS_TO_USE = 1500
 
 
