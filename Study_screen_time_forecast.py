@@ -30,7 +30,7 @@ def makeForecastStrings(mw):
     ids = mw.col.findCards('deck:current is:review -is:suspended')
 
     years = 10
-    forecast_days = 365.25 * years
+    forecast_days = 365.2425 * years
 
     if len(ids) > MAX_CARDS_TO_USE:
 #        stime = clock()
