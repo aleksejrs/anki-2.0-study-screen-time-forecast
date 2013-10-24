@@ -5,7 +5,7 @@ On the Study screen, shows how much total review time may be needed to retain th
 * The algorithm is pretty slow with thousands of cards, so by default it looks at no more than 1500 cards of the deck, and multiplies the time to approximate the actual number.  You can change the number by editing the MAX_CARDS_TO_USE variable in the add-on source code.
 
 <b>System requirements:</b>
-* <a href="https://ankiweb.net/shared/info/2189699505">"Card-specific stats: time forecast and ease warner"</a> (<b>NOTE:</b> by default, that add-on replaces the card-specific stats window with some enhancements; you can disable that by commenting the last meaningful line of it out with a "#").
+* <a href="https://ankiweb.net/shared/info/2189699505">Card time forecast (AKA "Card-specific stats: time forecast and ease warner")</a> (<b>NOTE:</b> by default, that add-on replaces the card-specific stats window with some enhancements; you can disable that by commenting the last meaningful line of it out with a "#").
 
 <b>Links</b>
 * Git repository with a wiki: <a href="https://gitorious.org/anki-2-0-study-screen-time-forecast">gitorious.org/anki-2-0-study-screen-time-forecast</a>;
