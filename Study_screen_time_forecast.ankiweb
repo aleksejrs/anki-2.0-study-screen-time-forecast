@@ -1,7 +1,8 @@
 On the Study screen, shows how much total review time may be needed to retain the cards in the current deck which are currently in Review state, for 10 years, assuming the Good button is pressed every time.
 <b>Important:</b>
+* <b>You need to also install the Card time forecast add-on, see the System requirements section.</b>
 * It does not consider in-learning cards, undo, new cards, future deletions, additions or edits.
-* It has all the other limitations of the "Card-specific stats: time forecast and ease warner" add-on which it depends on (see its page).  For example, if that add-on uses only the mean answer time, then one 1-minute answer will skew the forecast even if all the other answers were 5-second.
+* It has all the other limitations of the "Card time forecast" add-on which it depends on (see its page).  For example, if that add-on uses only the mean answer time, then one 1-minute answer will skew the forecast even if all the other answers were 5-second.
 * The algorithm is pretty slow with thousands of cards, so by default it looks at no more than 1500 cards of the deck, and multiplies the time to approximate the actual number.  You can change the number by editing the MAX_CARDS_TO_USE variable in the add-on source code.
 
 <b>System requirements:</b>
