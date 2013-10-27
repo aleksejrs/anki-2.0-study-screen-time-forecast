@@ -18,4 +18,5 @@ If you want me to notice your feedback soon, please use either:
 * Gitorious repository wiki mentioned in the previous section, if you think Gitorious will notify me.
 
 <b>Changelog (by date of upload)</b>
+* 2013-10-27: fix performance issues by disabling logging of our mw.col.getCard calls introduced in Anki 2.0.15.
 * 2013-06-18: first release here.
