@@ -19,7 +19,7 @@ def getTotalForIds(mw, ids, forecast_days):
     """Return forecast in seconds for cards listed in ids."""
     total = 0
     for cid in ids:
-        f = getForecast(mw, mw.col.getCard(cid), forecast_days)
+        f = getForecast(mw, mw.col.getCard(cid, log=False), forecast_days)
         if f:
             total += f
     return total
