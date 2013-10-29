@@ -10,7 +10,18 @@ from anki.hooks import wrap
 from aqt.overview import Overview
 from anki.utils import fmtTimeSpan
 
-from Card_time_forecast import getForecast
+try:
+    from Card_time_forecast import getForecast
+except:
+    raise ImportError('''
+
+AN ADD-ON NEEDS ANOTHER ADD-ON.
+
+"Study screen time forecast" failed to import the Card_time_forecast.py
+module.  You probably need to install the "Card time forecast" add-on,
+which you can get from https://ankiweb.net/shared/info/2189699505 or
+https://gitorious.org/anki-2-0-card-time-forecast-and-ease-warner''')
+
 
 # If the deck contains more cards, take a random sample of this many,
 # and multiply the result for an approximation.
