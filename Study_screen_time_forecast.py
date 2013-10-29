@@ -4,11 +4,13 @@
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
 #from time import clock
+import random
+
 from anki.hooks import wrap
 from aqt.overview import Overview
-from Card_time_forecast import getForecast
 from anki.utils import fmtTimeSpan
-import random
+
+from Card_time_forecast import getForecast
 
 # If the deck contains more cards, take a random sample of this many,
 # and multiply the result for an approximation.
