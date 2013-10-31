@@ -33,7 +33,16 @@ def getTotalForIds(mw, ids, forecast_days):
     """Return forecast in seconds for cards listed in ids."""
     total = 0
     for cid in ids:
-        f = getForecast(mw, mw.col.getCard(cid, log=False), forecast_days)
+
+        # Anki 2.0.15 logs getCard operations, which makes this add-on very
+        # slow, so we need to disable that.  2.0.16 will not do that.
+        try:
+            the_card = mw.col.getCard(cid, log=False)
+        except TypeError:    # It's not Anki 2.0.15.
+            the_card = mw.col.getCard(cid)
+
+        f = getForecast(mw, the_card, forecast_days)
+#        f = getForecast(mw, mw.col.getCard(cid, log=False), forecast_days)
         if f:
             total += f
     return total
