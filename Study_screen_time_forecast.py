@@ -57,7 +57,7 @@ def makeForecastStrings(mw):
 
     if len(ids) > MAX_CARDS_TO_USE:
 #        stime = clock()
-        multiplier = len(ids) / MAX_CARDS_TO_USE
+        multiplier = len(ids) / float(MAX_CARDS_TO_USE)
         ids = random.sample(ids, MAX_CARDS_TO_USE)
         total = getTotalForIds(mw, ids, forecast_days) * multiplier
 #        print "{0}s for {1} cards".format(clock() - stime, len(ids))

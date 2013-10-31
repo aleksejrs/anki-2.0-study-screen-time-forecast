@@ -18,7 +18,8 @@ If you want me to notice your feedback soon, please use either:
 * Gitorious repository wiki mentioned in the previous section, if you think Gitorious will notify me.
 
 <b>Changelog (by date of upload)</b>
-* 2013-10-31: compatibility with non-2.0.15 Anki versions (getCard logging is done and thus can be disabled only with Anki 2.0.15).
+* 2013-10-31: compatibility with non-2.0.15 Anki versions (getCard logging is done and thus can be disabled only with Anki 2.0.15);
+              use non-integer division for approximation after MAX_CARDS_TO_USE sampling (a big improvement for some amounts of cards).
 * 2013-10-29: improve the error message for when Card_time_forecast is not installed.
 * 2013-10-27: fix performance issues by disabling logging of our mw.col.getCard calls introduced in Anki 2.0.15.
 * 2013-06-18: first release here.
