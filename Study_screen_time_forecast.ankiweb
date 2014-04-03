@@ -20,8 +20,9 @@ On the Study screen, shows how much total review time may be needed to retain th
 
 <b>Feedback?</b>
 If you want me to notice your feedback soon, please use either:
-* the Google Group <a href="https://groups.google.com/forum/?fromgroups=#!forum/anki-addons">anki-addons</a>
+* <a href="https://anki.tenderapp.com/discussions/add-ons">the TenderApp discussion area</a>
 * Gitorious repository wiki mentioned in the previous section, if you think Gitorious will notify me.
+* the Google Group <a href="https://groups.google.com/forum/?fromgroups=#!forum/anki-addons">anki-addons</a>
 
 <b>Changelog (by date of upload)</b>
 * 2013-10-31: compatibility with non-2.0.15 Anki versions (getCard logging is done and thus can be disabled only with Anki 2.0.15);
