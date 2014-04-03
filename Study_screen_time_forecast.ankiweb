@@ -12,6 +12,12 @@ On the Study screen, shows how much total review time may be needed to retain th
 * Git repository with a wiki: <a href="https://gitorious.org/anki-2-0-study-screen-time-forecast">gitorious.org/anki-2-0-study-screen-time-forecast</a>;
 * another add-on for the Study screen: <a href="https://ankiweb.net/shared/info/674713543">Suggest Starting Ease for the deck's options group</a>.
 
+<b>Ideas</b>
+* It would be nice to use a different way of rendering the forecast, with less rounding than the one Anki has.  Maybe only for hours, if the forecast is for years.
+* Take the number of minutes that is going to be spent on reviews (not "In Learning" or "Relearn") every day, and show how many days the deck is going to take.  Issues:
+** Have to choose what to show.
+** Need the number of review minutes per day <i>for the deck in question</i>.
+
 <b>Feedback?</b>
 If you want me to notice your feedback soon, please use either:
 * the Google Group <a href="https://groups.google.com/forum/?fromgroups=#!forum/anki-addons">anki-addons</a>
