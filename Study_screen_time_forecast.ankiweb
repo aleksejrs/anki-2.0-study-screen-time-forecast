@@ -9,7 +9,8 @@ On the Study screen, shows how much total review time may be needed to retain th
 * <a href="https://ankiweb.net/shared/info/2189699505">Card time forecast (AKA "Card-specific stats: time forecast and ease warner")</a> (<b>NOTE:</b> by default, that add-on replaces the card-specific stats window with some enhancements; you can disable that by commenting the last meaningful line of it out with a "#").
 
 <b>Links</b>
-* Git repository with a wiki: <a href="https://gitorious.org/anki-2-0-study-screen-time-forecast">gitorious.org/anki-2-0-study-screen-time-forecast</a>;
+* Source code repository (GitHub): <a href="https://github.com/aleksejrs/anki-2.0-study-screen-time-forecast">github.com/aleksejrs/anki-2.0-study-screen-time-forecast</a>;
+* Old repository location (Gitorious): <a href="https://gitorious.org/anki-2-0-study-screen-time-forecast">gitorious.org/anki-2-0-study-screen-time-forecast</a>;
 * another add-on for the Study screen: <a href="https://ankiweb.net/shared/info/674713543">Suggest Starting Ease for the deck's options group</a>.
 
 <b>Ideas</b>
@@ -20,11 +21,11 @@ On the Study screen, shows how much total review time may be needed to retain th
 
 <b>Feedback?</b>
 If you want me to notice your feedback soon, please use either:
-* <a href="https://anki.tenderapp.com/discussions/add-ons">the TenderApp discussion area</a>
-* Gitorious repository wiki mentioned in the previous section, if you think Gitorious will notify me.
-* the Google Group <a href="https://groups.google.com/forum/?fromgroups=#!forum/anki-addons">anki-addons</a>
+* <a href="https://anki.tenderapp.com/discussions/add-ons">the TenderApp discussion area</a> (mention the add-on name in the message title);
+* <a href="https://github.com/aleksejrs/anki-2.0-study-screen-time-forecast/issues">GitHub issue tracker</a>.
 
 <b>Changelog (by date of upload)</b>
+* (2015-03-25: source code moved to GitHub, because Gitorious will be closed in May)
 * 2013-10-31: compatibility with non-2.0.15 Anki versions (getCard logging is done and thus can be disabled only with Anki 2.0.15);
               use non-integer division for approximation after MAX_CARDS_TO_USE sampling (a big improvement for some amounts of cards).
 * 2013-10-29: improve the error message for when Card_time_forecast is not installed.
