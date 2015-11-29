@@ -19,9 +19,9 @@ AN ADD-ON NEEDS ANOTHER ADD-ON.
 
 "Study screen time forecast" failed to import the Card_time_forecast.py
 module.  You probably need to install the "Card time forecast" add-on,
-which you can get (as of Oct 2013) from
+which you can get (as of Nov 2015) from
 https://ankiweb.net/shared/info/2189699505 or
-https://gitorious.org/anki-2-0-card-time-forecast-and-ease-warner''')
+https://github.com/aleksejrs/anki-2.0-card-time-forecast''')
 
 
 # If the deck contains more cards, take a random sample of this many,
