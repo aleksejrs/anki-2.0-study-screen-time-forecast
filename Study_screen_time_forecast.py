@@ -21,7 +21,10 @@ AN ADD-ON NEEDS ANOTHER ADD-ON.
 module.  You probably need to install the "Card time forecast" add-on,
 which you can get (as of Nov 2015) from
 https://ankiweb.net/shared/info/2189699505 or
-https://github.com/aleksejrs/anki-2.0-card-time-forecast''')
+https://github.com/aleksejrs/anki-2.0-card-time-forecast
+
+If that doesn't help, please see the README file for contact info to
+sent feedback to.''')
 
 
 # If the deck contains more cards, take a random sample of this many,
