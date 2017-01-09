@@ -25,6 +25,8 @@ If you want me to notice your feedback soon, please use either:
 * <a href="https://github.com/aleksejrs/anki-2.0-study-screen-time-forecast/issues">GitHub issue tracker</a>.
 
 <b>Changelog (by date of upload)</b>
+* 2017-01-09: option to skip forecasting for certain decks;
+              do not show a zero forecast.
 * (2015-03-25: source code moved to GitHub, because Gitorious will be closed in May)
 * 2013-10-31: compatibility with non-2.0.15 Anki versions (getCard logging is done and thus can be disabled only with Anki 2.0.15);
               use non-integer division for approximation after MAX_CARDS_TO_USE sampling (a big improvement for some amounts of cards).
