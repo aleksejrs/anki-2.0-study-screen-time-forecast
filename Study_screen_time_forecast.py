@@ -70,6 +70,9 @@ def makeForecastStrings(mw):
         total = getTotalForIds(mw, ids, forecast_days)
         totalText = u"Next {0}Y: {1}".format(years, fmtTimeSpan(total, short=True))
 
+    if total == 0:
+        return ''
+
     per_day = total / forecast_days
     if per_day >= 5:
         per_day_text = u" ({0}/day)".format(fmtTimeSpan(per_day, short=True))
