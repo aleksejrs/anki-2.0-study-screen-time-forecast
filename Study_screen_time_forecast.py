@@ -26,10 +26,32 @@ https://github.com/aleksejrs/anki-2.0-card-time-forecast
 If that doesn't help, please see the README file for contact info to
 sent feedback to.''')
 
+#### SETTINGS ###############################################################
+#
 
 # If the deck contains more cards, take a random sample of this many,
 # and multiply the result for an approximation.
 MAX_CARDS_TO_USE = 1500
+
+
+# Do not show forecast for these decks.  Use when you need speed and no daily
+# forecast.
+
+# complete names, a comma-separated list
+DECKS_WITHOUT_FORECAST_FULLNAMES = ()
+# Example:
+# DECKS_WITHOUT_FORECAST_FULLNAMES = ('/')
+
+# prefixes, a comma-separated list
+DECKS_WITHOUT_FORECAST_PREFIXES = ()
+# Example:
+# DECKS_WITHOUT_FORECAST_PREFIXES = ('~filt::prio')
+
+# We could change MAX_CARDS_TO_USE per-deck instead, but it affects precision
+# too much to want the result.
+
+#
+#############################################################################
 
 
 def getTotalForIds(mw, ids, forecast_days):
@@ -52,6 +74,12 @@ def getTotalForIds(mw, ids, forecast_days):
 
 
 def makeForecastStrings(mw):
+
+    # Skip decks specified in the special list variables.
+    if mw.col.decks.get(mw.col.conf['curDeck'])['name'] in DECKS_WITHOUT_FORECAST_FULLNAMES:
+        return ""
+    if mw.col.decks.get(mw.col.conf['curDeck'])['name'].startswith(DECKS_WITHOUT_FORECAST_PREFIXES):
+        return ""
 
     ids = mw.col.findCards('deck:current is:review -is:suspended')
 
