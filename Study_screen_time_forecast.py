@@ -1,7 +1,7 @@
 #!/usr/bin/python -tt
 # -*- coding: utf-8 -*-
 # Copyright: Aleksej, 2013
-# License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+# License: GNU Affero General Public License, version 3 only; http://www.gnu.org/licenses/agpl.html
 
 #from time import clock
 import random
